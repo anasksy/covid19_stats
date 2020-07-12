@@ -7,7 +7,7 @@ Map<String, Country>
     countries; // <country_name (for example: "Afghanistan"), country object>
 
 class API {
-  // gets run when the data needs to be loaded / refreshed
+  // run when the data needs to be loaded / refreshed
   static bool loadData() {
     json_string = JSONParser().fetchJSON();
     if (json_string == null) {
@@ -15,7 +15,7 @@ class API {
       return false;
     } else {
       // fetching worked so return true
-      initCountries();
+      initCountries(); //initalize countries map
       return true;
     }
   }
