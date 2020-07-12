@@ -2,9 +2,8 @@ import 'package:test/test.dart';
 import 'package:covid19_mobileapp/api/api.dart';
 
 void main() {
-  test('title', () {
-    /* var result = function.validate('parse variable');
-     * expect(result, "what result u expect");
-     */
+  test('load data (fetch json and convert it to usable data)', () {
+    API.loadData();
+    expect(API.loadData(), true);
   });
 }
