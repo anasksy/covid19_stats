@@ -20,11 +20,11 @@ class JSONParser {
   /* returns a country object from a json string with the country name */
   static Country getCountryfromJSON(String json_string, int index) {
     Map<String, dynamic> json = jsonDecode(json_string);
-    /* TO:DO parse json,, set country object (including every date object) */
+    /* TO:DO: parse json,, set country object (including every date object) */
   }
 
   /* returns the length of all countries in the json */
   static int getCountryIndexLength(String json_string) {
-    /* TO:DO get length of all countries from json (starting at 0) */
+    /* TO:DO: get length of all countries from json (starting at 0) */
   }
 }
