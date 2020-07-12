@@ -3,10 +3,10 @@
 A mobile application made with Flutter in Dart, which shows you the current Covid-19 Statistics!  
 Uses data from credible sources ([CSSEGISandData/COVID-19](https://github.com/CSSEGISandData/COVID-19/)).
 
-## Credits
+## Sources
 UI made by @anasksy.  
 API made by @sleepycharlyy.  
-Uses JSON API from @pomber and Data from @CSSEGISandData.
+Uses JSON API from [pomber/covid19](https://github.com/pomber/covid19) and Data from [CSSEGISandData/COVID-19](https://github.com/CSSEGISandData/COVID-19/).
 
 ## License
 
