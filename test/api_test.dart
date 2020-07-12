@@ -14,6 +14,5 @@ void main() {
     API.loadData();
     var json_string = await API.json_string;
     Map decoded = jsonDecode(json_string);
-    Utils.printDebug(decoded.toString());
   });
 }

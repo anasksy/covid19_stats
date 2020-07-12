@@ -33,10 +33,11 @@ class API {
 
   /* initalize country map */
   static void initCountries() {
-    /*for (int i = 0; i < JSONParser.getCountryIndexLength(json_string); i++) {
+    for (int i = 0; i < JSONParser.getCountryIndexLength(json_string); i++) {
       Country _country = JSONParser.getCountryfromJSON(json_string, i);
       countries[_country.name] = _country;
-    }*/
+    }
+    print(countries[0]);
   }
 
   /* returns country object by the country name (for example: "Afghanistan") */
@@ -44,9 +45,17 @@ class API {
     return countries[country_name];
   }
 
-  /* returns date object by date string (for example: "2020-1-22") and country */
-  static Date getDateByCountry(String date_string, Country country) {
-    return country.dates[date_string];
+  /* returns date object by date_count and country */
+  static Date getDateByCountry(int date_count, Country country) {
+    return country.dates[date_count];
+  }
+
+  /* returns date_count by country and date_string(yyyy-mm-dd) */
+  static int getDateCountByDateString(String date_string, Country country) {
+    for (int i = 0; i < country.dates.length - 1; i++) {
+      if (country.dates[i].date_string == date_string) return i;
+    }
+    return null; /* no date count was found */
   }
 
   /* returns confirmed cases by date object */

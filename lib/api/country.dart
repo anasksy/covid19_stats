@@ -2,8 +2,7 @@ import 'date.dart';
 
 class Country {
   final String name;
-  final Map<String, Date>
-      dates; /* <date string(format: "yyyy-mm-dd"), date object> */
+  final Map<int, Date> dates; /* <date count, date object> */
 
   Country(this.name, this.dates);
 }
