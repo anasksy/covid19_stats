@@ -33,10 +33,10 @@ class API {
 
   /* initalize country map */
   static void initCountries() {
-    for (int i = 0; i < JSONParser.getCountryIndexLength(json_string); i++) {
+    /*for (int i = 0; i < JSONParser.getCountryIndexLength(json_string); i++) {
       Country _country = JSONParser.getCountryfromJSON(json_string, i);
       countries[_country.name] = _country;
-    }
+    }*/
   }
 
   /* returns country object by the country name (for example: "Afghanistan") */
