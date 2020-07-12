@@ -24,7 +24,7 @@ class _HomescreenState extends State<Homescreen> {
                     onPressed: () {
                       Utils.printDebug("MENU BUTTON CLICKED");
                     },
-                    color: Colors.white54,
+                    color: Colors.white70,
                     highlightColor: Colors.white54,
                     iconSize: 35.0,
                   ),
@@ -36,13 +36,25 @@ class _HomescreenState extends State<Homescreen> {
                     onPressed: () {
                       Utils.printDebug("SEARCH BUTTON CLICKED");
                     },
-                    color: Colors.white54,
+                    color: Colors.white70,
                     highlightColor: Colors.white54,
                     iconSize: 35.0,
                   ),
                 ),
               ],
             ),
+            Container(
+              alignment: Alignment.topLeft,
+              margin: EdgeInsets.only(left: 24, top: 35),
+              child: Text(
+                "Statistics",
+                style: TextStyle(
+                  fontSize: 25.0,
+                  letterSpacing: 0.15,
+                  color: Colors.white70,
+                ),
+              ),
+            )
           ],
         ),
       ),
