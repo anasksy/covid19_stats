@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'utils.dart';
 
 class Homescreen extends StatefulWidget {
   @override
@@ -18,17 +19,19 @@ class _HomescreenState extends State<Homescreen> {
                 IconButton(
                   icon: Icon(Icons.menu),
                   onPressed: () {
-                    print("MENU BUTTON CLICKED");
+                    Utils.printDebug("MENU BUTTON CLICKED");
                   },
                   color: Colors.white54,
+                  highlightColor: Colors.white70,
                   iconSize: 35.0,
                 ),
                 IconButton(
                   icon: Icon(Icons.search),
                   onPressed: () {
-                    print("SEARCH BUTTON CLICKED");
+                    Utils.printDebug("SEARCH BUTTON CLICKED");
                   },
                   color: Colors.white54,
+                  highlightColor: Colors.white70,
                   iconSize: 35.0,
                 ),
               ],
