@@ -63,4 +63,12 @@ class API {
   static int getRecoveredByDate(Date date) {
     return date.recovered;
   }
+
+  /* convert date-string into date format */
+  static DateTime formatDateString(String date_string) {
+    /* date_string is in format (yyyy-mm-dd) */
+    var formatted = date_string.split("-");
+    return new DateTime(int.parse(formatted[0]), int.parse(formatted[1]),
+        int.parse(formatted[2]));
+  }
 }
