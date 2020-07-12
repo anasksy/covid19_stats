@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'Homescreen.dart';
+import 'homescreen.dart';
 
 void main() => runApp(
       CovidApp(),
