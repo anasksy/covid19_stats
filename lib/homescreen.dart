@@ -15,24 +15,31 @@ class _HomescreenState extends State<Homescreen> {
         child: Column(
           children: <Widget>[
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                IconButton(
-                  icon: Icon(Icons.menu),
-                  onPressed: () {
-                    Utils.printDebug("MENU BUTTON CLICKED");
-                  },
-                  color: Colors.white54,
-                  highlightColor: Colors.white70,
-                  iconSize: 35.0,
+                Container(
+                  margin: EdgeInsets.only(left: 14.4, top: 14.4),
+                  child: IconButton(
+                    icon: Icon(Icons.menu),
+                    onPressed: () {
+                      Utils.printDebug("MENU BUTTON CLICKED");
+                    },
+                    color: Colors.white54,
+                    highlightColor: Colors.white54,
+                    iconSize: 35.0,
+                  ),
                 ),
-                IconButton(
-                  icon: Icon(Icons.search),
-                  onPressed: () {
-                    Utils.printDebug("SEARCH BUTTON CLICKED");
-                  },
-                  color: Colors.white54,
-                  highlightColor: Colors.white70,
-                  iconSize: 35.0,
+                Container(
+                  margin: EdgeInsets.only(right: 14.4, top: 14.4),
+                  child: IconButton(
+                    icon: Icon(Icons.search),
+                    onPressed: () {
+                      Utils.printDebug("SEARCH BUTTON CLICKED");
+                    },
+                    color: Colors.white54,
+                    highlightColor: Colors.white54,
+                    iconSize: 35.0,
+                  ),
                 ),
               ],
             ),
