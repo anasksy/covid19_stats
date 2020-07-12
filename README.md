@@ -1,6 +1,6 @@
 # COVID-19 Statistics Flutter Visualization App
 
-A mobile application made with Flutter in Dart to bring you the current Covid-19 Statistics!  
+A mobile application made with Flutter in Dart, which shows you the current Covid-19 Statistics!  
 Uses data from credible sources ([CSSEGISandData/COVID-19](https://github.com/CSSEGISandData/COVID-19/)).
 
 ## License
