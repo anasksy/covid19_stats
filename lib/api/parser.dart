@@ -21,7 +21,6 @@ class JSONParser {
   /* returns a country object from a json string with the country name */
   static Country getCountryfromJSON(String json_string, int index) {
     Map<String, dynamic> json = jsonDecode(json_string);
-    /* TO:DO: parse json,, set country object (including every date object) */
     int i = 0;
     json.forEach((String country_name, dynamic country_values) {
       i++;
