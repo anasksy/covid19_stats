@@ -7,4 +7,9 @@ class Utils {
       print("DEBUG: " + message);
     }
   }
+
+  /* check if debug is on */
+  static bool debug() {
+    return debug_mode;
+  }
 }

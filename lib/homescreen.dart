@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'utils.dart';
-import 'package:flutter/services.dart';
 
 class Homescreen extends StatefulWidget {
   @override
@@ -12,12 +11,11 @@ class _HomescreenState extends State<Homescreen> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     List<bool> _selections = List.generate(2, (_) => false);
-    SystemChrome.setEnabledSystemUIOverlays([]);
     return Scaffold(
       backgroundColor: Colors.purple[800],
       body: Stack(
         children: <Widget>[
-          // Added white container with border curve at the bottom
+          // Added white container with rounded corners
           Container(
             margin: EdgeInsets.only(top: 450),
             decoration: BoxDecoration(
@@ -48,7 +46,7 @@ class _HomescreenState extends State<Homescreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    // Added Menu-IconButton at the top left
+                    // Added Menu-IconButton at the top left corner
                     Container(
                       margin: EdgeInsets.only(left: 14.4, top: 14.4),
                       child: IconButton(
@@ -61,7 +59,7 @@ class _HomescreenState extends State<Homescreen> {
                         iconSize: 35.0,
                       ),
                     ),
-                    // Added Search-IconButton at the top right
+                    // Added Search-IconButton at the top right corner
                     Container(
                       margin: EdgeInsets.only(right: 14.4, top: 14.4),
                       child: IconButton(
@@ -77,7 +75,7 @@ class _HomescreenState extends State<Homescreen> {
                   ],
                 ),
                 // Added "Statistics" Text
-                // ==> it's under the Menu-IconButton at the top left
+                // ==> it's under the Menu-IconButton at the top left corner
                 Container(
                   alignment: Alignment.topLeft,
                   margin: EdgeInsets.only(left: 24, top: 33),
