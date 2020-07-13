@@ -20,7 +20,7 @@ class JSONParser {
     }
   }
 
-  /* returns a country object from a json string with the country name */
+  /* returns a countries map object from a json string with the country name */
   static Map<String, Country> getCountriesfromJSON(String json_string) {
     Map<String, Country> countries = new Map<String, Country>();
     Map<String, dynamic> json = jsonDecode(json_string);
