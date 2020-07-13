@@ -32,7 +32,7 @@ dependencies:
 
 dev_dependencies:
   flutter-test:
-    sdk: flutter
+    sdk: flutter-test
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
