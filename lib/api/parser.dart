@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'country.dart';
@@ -19,27 +21,20 @@ class JSONParser {
   }
 
   /* returns a country object from a json string with the country name */
-  static Country getCountryfromJSON(String json_string, int index) {
+  static Map<String, Country> getCountriesfromJSON(String json_string) {
+    Map<String, Country> countries = new Map<String, Country>();
     Map<String, dynamic> json = jsonDecode(json_string);
-    int i = 0;
     json.forEach((String country_name, dynamic country_values) {
-      i++;
-      if (i == index) {
-        Map<int, dynamic> datesjson = json[i];
-        Map<int, Date> dates;
-        for (int j = 0; j < datesjson.length - 1; j++) {
-          dates[j] = Date.fromJson(datesjson[j]);
-        }
-        Country searched = new Country(country_name, dates);
-        return searched; /* success */
-      }
+      Map<int, Date> dates = new Map<int, Date>();
+      int i = 0;
+      country_values.forEach((dynamic value) {
+        dates[i] = new Date(value["date"].toString(), value["confirmed"] as int,
+            value["deaths"] as int, value["recovered"] as int);
+        Country country = new Country(country_name, dates);
+        countries[country.name] = country;
+        i++;
+      });
     });
-    return null; /* failed */
-  }
-
-  /* returns the length of all countries in the json */
-  static int getCountryIndexLength(String json_string) {
-    Map<String, dynamic> json = jsonDecode(json_string);
-    return json.length;
+    return countries;
   }
 }
