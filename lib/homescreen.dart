@@ -11,13 +11,14 @@ class _HomescreenState extends State<Homescreen> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     List<bool> _selections = List.generate(2, (_) => false);
+    List<bool> _selections2 = List.generate(3, (_) => false);
     return Scaffold(
       backgroundColor: Colors.purple[800],
       body: Stack(
         children: <Widget>[
           // Added white container with rounded corners
           Container(
-            margin: EdgeInsets.only(top: 450),
+            margin: EdgeInsets.only(top: 475),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(40),
@@ -38,7 +39,7 @@ class _HomescreenState extends State<Homescreen> {
                   letterSpacing: 0,
                   fontWeight: FontWeight.bold),
             ),
-            margin: EdgeInsets.only(top: 480, left: 24),
+            margin: EdgeInsets.only(top: 510, left: 24),
           ),
           SafeArea(
             child: Column(
@@ -52,7 +53,7 @@ class _HomescreenState extends State<Homescreen> {
                       child: IconButton(
                         icon: Icon(Icons.menu),
                         onPressed: () {
-                          Utils.printDebug("MENU BUTTON CLICKED");
+                          Utils.printDebug("PRESSED MENU BUTTON");
                         },
                         color: Colors.white,
                         highlightColor: Colors.white70,
@@ -65,7 +66,7 @@ class _HomescreenState extends State<Homescreen> {
                       child: IconButton(
                         icon: Icon(Icons.search),
                         onPressed: () {
-                          Utils.printDebug("SEARCH BUTTON CLICKED");
+                          Utils.printDebug("PRESSED SEARCH BUTTON");
                         },
                         color: Colors.white,
                         highlightColor: Colors.white70,
@@ -91,6 +92,7 @@ class _HomescreenState extends State<Homescreen> {
                 // Added ToggleButtons
                 // ==> My Country/Global
                 Container(
+                  padding: EdgeInsets.only(left: 50, right: 50),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(
                       Radius.circular(20),
@@ -99,28 +101,73 @@ class _HomescreenState extends State<Homescreen> {
                   ),
                   margin: EdgeInsets.only(top: 30),
                   child: ToggleButtons(
-                      children: <Widget>[
-                        // maybe changing FlatButton to RaisedButton
-                        FlatButton(
-                          child: Text("My Country"),
-                          onPressed: () {
-                            Utils.printDebug("PRESSED MYCOUNTRY BUTTON");
-                          },
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(20),
+                    ),
+                    children: <Widget>[
+                      // maybe changing FlatButton to RaisedButton
+                      FlatButton(
+                        child: Text(
+                          "My Country",
+                          style: TextStyle(color: Colors.white70),
                         ),
-                        FlatButton(
-                          child: Text("Global"),
-                          onPressed: () {
-                            Utils.printDebug("PRESSED GLOBAL BUTTON");
-                          },
+                        onPressed: () {
+                          Utils.printDebug("PRESSED MYCOUNTRY BUTTON");
+                        },
+                      ),
+                      FlatButton(
+                        child: Text(
+                          "Global",
+                          style: TextStyle(color: Colors.white70),
                         ),
-                      ],
-                      isSelected: _selections,
-                      onPressed: (int index) {
-                        setState(() {
-                          _selections[index] = !_selections[index];
-                        });
-                      }),
+                        onPressed: () {
+                          Utils.printDebug("PRESSED GLOBAL BUTTON");
+                        },
+                      ),
+                    ],
+                    isSelected: _selections,
+                    onPressed: (int index) {
+                      setState(() {
+                        _selections[index] = !_selections[index];
+                      });
+                    },
+                    renderBorder: false,
+                  ),
                 ),
+                // Added TOTAL/TODAY/YESTERDAY Buttons
+                ToggleButtons(
+                  children: <Widget>[
+                    FlatButton(
+                      child: Text(
+                        "Total",
+                        style: TextStyle(color: Colors.white54),
+                      ),
+                      onPressed: () {
+                        Utils.printDebug("PRESSED TOTAL BUTTON");
+                      },
+                    ),
+                    FlatButton(
+                      child: Text(
+                        "Today",
+                        style: TextStyle(color: Colors.white54),
+                      ),
+                      onPressed: () {
+                        Utils.printDebug("PRESSED TODAY BUTTON");
+                      },
+                    ),
+                    FlatButton(
+                      child: Text(
+                        "Yesterday",
+                        style: TextStyle(color: Colors.white54),
+                      ),
+                      onPressed: () {
+                        Utils.printDebug("PRESSED YESTERDAY BUTTON");
+                      },
+                    ),
+                  ],
+                  isSelected: _selections2,
+                  renderBorder: false,
+                )
               ],
             ),
           ),
