@@ -9,54 +9,80 @@ class Homescreen extends StatefulWidget {
 class _HomescreenState extends State<Homescreen> {
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Colors.cyan[900],
-      body: SafeArea(
-        child: Column(
-          children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      backgroundColor: Colors.purple[800],
+      body: Stack(
+        children: <Widget>[
+          Container(
+            margin: EdgeInsets.only(top: 450),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(40),
+                topRight: Radius.circular(40),
+              ),
+              color: Colors.white,
+            ),
+          ),
+          Container(
+            child: Text(
+              "Daily New Cases",
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 22,
+                  letterSpacing: 0,
+                  fontWeight: FontWeight.bold),
+            ),
+            margin: EdgeInsets.only(top: 480, left: 24),
+          ),
+          SafeArea(
+            child: Column(
               children: <Widget>[
-                Container(
-                  margin: EdgeInsets.only(left: 14.4, top: 14.4),
-                  child: IconButton(
-                    icon: Icon(Icons.menu),
-                    onPressed: () {
-                      Utils.printDebug("MENU BUTTON CLICKED");
-                    },
-                    color: Colors.white70,
-                    highlightColor: Colors.white54,
-                    iconSize: 35.0,
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Container(
+                      margin: EdgeInsets.only(left: 14.4, top: 14.4),
+                      child: IconButton(
+                        icon: Icon(Icons.menu),
+                        onPressed: () {
+                          Utils.printDebug("MENU BUTTON CLICKED");
+                        },
+                        color: Colors.white,
+                        highlightColor: Colors.white70,
+                        iconSize: 35.0,
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(right: 14.4, top: 14.4),
+                      child: IconButton(
+                        icon: Icon(Icons.search),
+                        onPressed: () {
+                          Utils.printDebug("SEARCH BUTTON CLICKED");
+                        },
+                        color: Colors.white,
+                        highlightColor: Colors.white70,
+                        iconSize: 35.0,
+                      ),
+                    ),
+                  ],
                 ),
                 Container(
-                  margin: EdgeInsets.only(right: 14.4, top: 14.4),
-                  child: IconButton(
-                    icon: Icon(Icons.search),
-                    onPressed: () {
-                      Utils.printDebug("SEARCH BUTTON CLICKED");
-                    },
-                    color: Colors.white70,
-                    highlightColor: Colors.white54,
-                    iconSize: 35.0,
+                  alignment: Alignment.topLeft,
+                  margin: EdgeInsets.only(left: 24, top: 33),
+                  child: Text(
+                    "Statistics",
+                    style: TextStyle(
+                      fontSize: 23.0,
+                      letterSpacing: 0.15,
+                      color: Colors.white,
+                    ),
                   ),
-                ),
+                )
               ],
             ),
-            Container(
-              alignment: Alignment.topLeft,
-              margin: EdgeInsets.only(left: 24, top: 35),
-              child: Text(
-                "Statistics",
-                style: TextStyle(
-                  fontSize: 25.0,
-                  letterSpacing: 0.15,
-                  color: Colors.white70,
-                ),
-              ),
-            )
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
