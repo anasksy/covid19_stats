@@ -6,8 +6,8 @@ A mobile application made with Flutter in Dart, which shows you the current Covi
 
 ### Credits
 
-UI made by @anasksy.  
-API made by @sleepycharlyy.
+UI made by [anasksy](https://github.com/anasksy).  
+API made by [sleepycharlyy](https://github.com/sleepycharlyy).
 
 ### Sources
 
