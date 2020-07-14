@@ -95,7 +95,7 @@ class _HomescreenState extends State<Homescreen> {
                 ),
                 // Added ToggleButton MYCOUNTRY/GLOBAL
                 Container(
-                  margin: EdgeInsets.only(top: 20),
+                  margin: EdgeInsets.only(top: 25),
                   child: ToggleSwitch(
                       minWidth: 150.0,
                       cornerRadius: 20,
@@ -110,7 +110,7 @@ class _HomescreenState extends State<Homescreen> {
                 ),
                 //Added ToggleButton TOTAL/TODAY/YESTERDAY
                 Container(
-                  margin: EdgeInsets.only(top: 20),
+                  margin: EdgeInsets.only(top: 10),
                   child: ToggleSwitch(
                       minWidth: 75.0,
                       activeBgColor: Colors.purple[800],
