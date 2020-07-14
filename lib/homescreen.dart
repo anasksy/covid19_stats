@@ -11,9 +11,9 @@ class Homescreen extends StatefulWidget {
 class _HomescreenState extends State<Homescreen> {
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
+    // no need currently ==> var size = MediaQuery.of(context).size;
     // old code 1 ==> List<bool> _selections = List.generate(2, (_) => false);
-    List<bool> _selections2 = List.generate(3, (_) => false);
+    // old code 2 ==> List<bool> _selections2 = List.generate(3, (_) => false);
     return Scaffold(
       backgroundColor: Colors.purple[800],
       body: Stack(
@@ -93,7 +93,7 @@ class _HomescreenState extends State<Homescreen> {
                     ),
                   ),
                 ),
-                // Added MyCountry/Global SwitchButton
+                // Added ToggleButton MYCOUNTRY/GLOBAL
                 Container(
                   margin: EdgeInsets.only(top: 20),
                   child: ToggleSwitch(
@@ -108,44 +108,7 @@ class _HomescreenState extends State<Homescreen> {
                         print('switched to: $index');
                       }),
                 ),
-                // Added TOTAL/TODAY/YESTERDAY Buttons
-                /* Container(
-                  margin: EdgeInsets.only(top: 5),
-                  child: ToggleButtons(
-                    children: <Widget>[
-                      FlatButton(
-                        child: Text(
-                          "Total",
-                          style: TextStyle(color: Colors.white54),
-                        ),
-                        onPressed: () {
-                          Utils.printDebug("PRESSED TOTAL BUTTON");
-                        },
-                      ),
-                      FlatButton(
-                        child: Text(
-                          "Today",
-                          style: TextStyle(color: Colors.white54),
-                        ),
-                        onPressed: () {
-                          Utils.printDebug("PRESSED TODAY BUTTON");
-                        },
-                      ),
-                      FlatButton(
-                        child: Text(
-                          "Yesterday",
-                          style: TextStyle(color: Colors.white54),
-                        ),
-                        onPressed: () {
-                          Utils.printDebug("PRESSED YESTERDAY BUTTON");
-                        },
-                      ),
-                    ],
-                    isSelected: _selections2,
-                    renderBorder: false,
-                  ),
-                )
-              */
+                //Added ToggleButton TOTAL/TODAY/YESTERDAY
                 Container(
                   margin: EdgeInsets.only(top: 20),
                   child: ToggleSwitch(

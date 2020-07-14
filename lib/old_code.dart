@@ -46,3 +46,43 @@
                 ),                
 
                */
+
+// OLD CODE 2
+// Added TOTAL/TODAY/YESTERDAY Buttons
+/* Container(
+                  margin: EdgeInsets.only(top: 5),
+                  child: ToggleButtons(
+                    children: <Widget>[
+                      FlatButton(
+                        child: Text(
+                          "Total",
+                          style: TextStyle(color: Colors.white54),
+                        ),
+                        onPressed: () {
+                          Utils.printDebug("PRESSED TOTAL BUTTON");
+                        },
+                      ),
+                      FlatButton(
+                        child: Text(
+                          "Today",
+                          style: TextStyle(color: Colors.white54),
+                        ),
+                        onPressed: () {
+                          Utils.printDebug("PRESSED TODAY BUTTON");
+                        },
+                      ),
+                      FlatButton(
+                        child: Text(
+                          "Yesterday",
+                          style: TextStyle(color: Colors.white54),
+                        ),
+                        onPressed: () {
+                          Utils.printDebug("PRESSED YESTERDAY BUTTON");
+                        },
+                      ),
+                    ],
+                    isSelected: _selections2,
+                    renderBorder: false,
+                  ),
+                )
+              */
