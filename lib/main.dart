@@ -12,6 +12,12 @@ void main() {
 class CovidApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // Colorized StatusBar
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        statusBarColor: Colors.purple[800],
+      ),
+    );
     // Return material app
     return MaterialApp(
       debugShowCheckedModeBanner: false,

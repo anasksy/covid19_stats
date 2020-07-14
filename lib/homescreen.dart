@@ -1,5 +1,7 @@
-import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'utils.dart';
+import 'package:flutter/material.dart';
+import 'package:toggle_switch/toggle_switch.dart';
 
 class Homescreen extends StatefulWidget {
   @override
@@ -9,9 +11,9 @@ class Homescreen extends StatefulWidget {
 class _HomescreenState extends State<Homescreen> {
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
-    List<bool> _selections = List.generate(2, (_) => false);
-    List<bool> _selections2 = List.generate(3, (_) => false);
+    // no need currently ==> var size = MediaQuery.of(context).size;
+    // old code 1 ==> List<bool> _selections = List.generate(2, (_) => false);
+    // old code 2 ==> List<bool> _selections2 = List.generate(3, (_) => false);
     return Scaffold(
       backgroundColor: Colors.purple[800],
       body: Stack(
@@ -33,11 +35,12 @@ class _HomescreenState extends State<Homescreen> {
           Container(
             child: Text(
               "Daily New Cases",
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 22,
-                  letterSpacing: 0,
-                  fontWeight: FontWeight.bold),
+              style: GoogleFonts.roboto(
+                textStyle: TextStyle(
+                    color: Colors.black,
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold),
+              ),
             ),
             margin: EdgeInsets.only(top: 510, left: 24),
           ),
@@ -82,92 +85,43 @@ class _HomescreenState extends State<Homescreen> {
                   margin: EdgeInsets.only(left: 24, top: 33),
                   child: Text(
                     "Statistics",
-                    style: TextStyle(
-                      fontSize: 23.0,
-                      letterSpacing: 0.15,
-                      color: Colors.white,
+                    style: GoogleFonts.roboto(
+                      textStyle: TextStyle(
+                        fontSize: 23.0,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),
-                // Added ToggleButtons
-                // ==> My Country/Global
+                // Added ToggleButton MYCOUNTRY/GLOBAL
                 Container(
-                  padding: EdgeInsets.only(left: 50, right: 50),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(20),
-                    ),
-                    color: Colors.white54,
-                  ),
-                  margin: EdgeInsets.only(top: 30),
-                  child: ToggleButtons(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(20),
-                    ),
-                    children: <Widget>[
-                      // maybe changing FlatButton to RaisedButton
-                      FlatButton(
-                        child: Text(
-                          "My Country",
-                          style: TextStyle(color: Colors.white70),
-                        ),
-                        onPressed: () {
-                          Utils.printDebug("PRESSED MYCOUNTRY BUTTON");
-                        },
-                      ),
-                      FlatButton(
-                        child: Text(
-                          "Global",
-                          style: TextStyle(color: Colors.white70),
-                        ),
-                        onPressed: () {
-                          Utils.printDebug("PRESSED GLOBAL BUTTON");
-                        },
-                      ),
-                    ],
-                    isSelected: _selections,
-                    onPressed: (int index) {
-                      setState(() {
-                        _selections[index] = !_selections[index];
-                      });
-                    },
-                    renderBorder: false,
-                  ),
+                  margin: EdgeInsets.only(top: 25),
+                  child: ToggleSwitch(
+                      minWidth: 150.0,
+                      cornerRadius: 20,
+                      activeBgColor: Colors.white,
+                      activeTextColor: Colors.black87,
+                      inactiveBgColor: Colors.white54,
+                      inactiveTextColor: Colors.white70,
+                      labels: ['My Country', 'Global'],
+                      onToggle: (index) {
+                        print('switched to: $index');
+                      }),
                 ),
-                // Added TOTAL/TODAY/YESTERDAY Buttons
-                ToggleButtons(
-                  children: <Widget>[
-                    FlatButton(
-                      child: Text(
-                        "Total",
-                        style: TextStyle(color: Colors.white54),
-                      ),
-                      onPressed: () {
-                        Utils.printDebug("PRESSED TOTAL BUTTON");
-                      },
-                    ),
-                    FlatButton(
-                      child: Text(
-                        "Today",
-                        style: TextStyle(color: Colors.white54),
-                      ),
-                      onPressed: () {
-                        Utils.printDebug("PRESSED TODAY BUTTON");
-                      },
-                    ),
-                    FlatButton(
-                      child: Text(
-                        "Yesterday",
-                        style: TextStyle(color: Colors.white54),
-                      ),
-                      onPressed: () {
-                        Utils.printDebug("PRESSED YESTERDAY BUTTON");
-                      },
-                    ),
-                  ],
-                  isSelected: _selections2,
-                  renderBorder: false,
-                )
+                //Added ToggleButton TOTAL/TODAY/YESTERDAY
+                Container(
+                  margin: EdgeInsets.only(top: 10),
+                  child: ToggleSwitch(
+                      minWidth: 75.0,
+                      activeBgColor: Colors.purple[800],
+                      activeTextColor: Colors.white,
+                      inactiveBgColor: Colors.purple[800],
+                      inactiveTextColor: Colors.white70,
+                      labels: ['Total', 'Today', 'Yesterday'],
+                      onToggle: (index) {
+                        print('switched to: $index');
+                      }),
+                ),
               ],
             ),
           ),
