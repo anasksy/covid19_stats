@@ -109,7 +109,7 @@ class _HomescreenState extends State<Homescreen> {
                       }),
                 ),
                 // Added TOTAL/TODAY/YESTERDAY Buttons
-                Container(
+                /* Container(
                   margin: EdgeInsets.only(top: 5),
                   child: ToggleButtons(
                     children: <Widget>[
@@ -145,6 +145,20 @@ class _HomescreenState extends State<Homescreen> {
                     renderBorder: false,
                   ),
                 )
+              */
+                Container(
+                  margin: EdgeInsets.only(top: 20),
+                  child: ToggleSwitch(
+                      minWidth: 75.0,
+                      activeBgColor: Colors.purple[800],
+                      activeTextColor: Colors.white,
+                      inactiveBgColor: Colors.purple[800],
+                      inactiveTextColor: Colors.white70,
+                      labels: ['Total', 'Today', 'Yesterday'],
+                      onToggle: (index) {
+                        print('switched to: $index');
+                      }),
+                ),
               ],
             ),
           ),
