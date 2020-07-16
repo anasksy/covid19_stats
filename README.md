@@ -3,6 +3,7 @@
 ## About
 
 A mobile application made with Flutter in Dart, which shows you the current Covid-19 Statistics!  
+[itch.io page](https://sleepycharlyy.itch.io/covid-19-statistics-mobile)
 
 ### Credits
 
