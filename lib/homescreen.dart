@@ -20,11 +20,16 @@ class Homescreen extends StatefulWidget {
 
 class _HomescreenState extends State<Homescreen> {
   // variables:
+
   dynamic toggle_switch_state_country = ToggleSwitchStateCountry.mycountry;
   dynamic toggle_switch_state_timespan = ToggleSwitchStateTimeSpan.total;
   dynamic affected = "N/A";
   dynamic deaths = "N/A";
   dynamic recovered = "N/A";
+
+  _refreshAction() {
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -126,62 +131,62 @@ class _HomescreenState extends State<Homescreen> {
               ),
             ),
             /*=> ACTIVE
-            Positioned(
-              top: 347,
-              child: Container(
-                height: 85,
-                width: 97.5,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.blue[400],
-                ),
-                child: Column(
-                  children: <Widget>[
-                    Text(
-                      "Active",
-                      style: GoogleFonts.roboto(
-                        textStyle: TextStyle(color: Colors.white70),
+              Positioned(
+                top: 347,
+                child: Container(
+                  height: 85,
+                  width: 97.5,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.blue[400],
+                  ),
+                  child: Column(
+                    children: <Widget>[
+                      Text(
+                        "Active",
+                        style: GoogleFonts.roboto(
+                          textStyle: TextStyle(color: Colors.white70),
+                        ),
                       ),
-                    ),
-                    Text(
-                      "N/A",
-                      style: GoogleFonts.roboto(
-                        textStyle: TextStyle(color: Colors.white70),
+                      Text(
+                        "N/A",
+                        style: GoogleFonts.roboto(
+                          textStyle: TextStyle(color: Colors.white70),
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            // => SERIOUS
-            Positioned(
-              top: 347,
-              left: 240,
-              child: Container(
-                height: 85,
-                width: 97.5,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.purple[400],
-                ),
-                child: Column(
-                  children: <Widget>[
-                    Text(
-                      "Serious",
-                      style: GoogleFonts.roboto(
-                        textStyle: TextStyle(color: Colors.white70),
-                      ),
-                    ),
-                    Text(
-                      "N/A",
-                      style: GoogleFonts.roboto(
-                        textStyle: TextStyle(color: Colors.white70),
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),*/
+              // => SERIOUS
+              Positioned(
+                top: 347,
+                left: 240,
+                child: Container(
+                  height: 85,
+                  width: 97.5,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.purple[400],
+                  ),
+                  child: Column(
+                    children: <Widget>[
+                      Text(
+                        "Serious",
+                        style: GoogleFonts.roboto(
+                          textStyle: TextStyle(color: Colors.white70),
+                        ),
+                      ),
+                      Text(
+                        "N/A",
+                        style: GoogleFonts.roboto(
+                          textStyle: TextStyle(color: Colors.white70),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),*/
             // Added white container with rounded corners
             Container(
               margin: EdgeInsets.only(top: 470),
@@ -226,14 +231,16 @@ class _HomescreenState extends State<Homescreen> {
                         iconSize: 35.0,
                       ),
                     ),
-                    // Added Search-IconButton at the top right corner
+                    // Added REFRESH-IconButton at the top right corner
                     Container(
                       margin: EdgeInsets.only(right: 14.4, top: 14.4),
                       child: IconButton(
-                        icon: Icon(Icons.search),
+                        icon: Icon(Icons.refresh),
                         onPressed: () {
+                          _refreshAction();
                           Utils.printDebug("PRESSED SEARCH BUTTON");
                         },
+                        tooltip: "Presh to refresh",
                         color: Colors.white,
                         highlightColor: Colors.white70,
                         iconSize: 35.0,
