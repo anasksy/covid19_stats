@@ -2,6 +2,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'utils.dart';
 import 'package:flutter/material.dart';
 import 'package:toggle_switch/toggle_switch.dart';
+import 'api/api.dart';
 
 enum ToggleSwitchStateCountry { global, mycountry }
 enum ToggleSwitchStateTimeSpan { total, today, yesterday }
@@ -28,7 +29,16 @@ class _HomescreenState extends State<Homescreen> {
   dynamic recovered = "N/A";
 
   _refreshAction() {
-    setState(() {});
+    setState(() {
+      if (API.loadData() == false) {
+        // no internet or api couldnt get initialized
+        Utils.printDebug("API INIT ERROR");
+        // no internet screen
+      } else {
+        Utils.printDebug("API INIT SUCCESSFUL");
+        // refresh was successful
+      }
+    });
   }
 
   @override
@@ -130,63 +140,6 @@ class _HomescreenState extends State<Homescreen> {
                 ),
               ),
             ),
-            /*=> ACTIVE
-              Positioned(
-                top: 347,
-                child: Container(
-                  height: 85,
-                  width: 97.5,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.blue[400],
-                  ),
-                  child: Column(
-                    children: <Widget>[
-                      Text(
-                        "Active",
-                        style: GoogleFonts.roboto(
-                          textStyle: TextStyle(color: Colors.white70),
-                        ),
-                      ),
-                      Text(
-                        "N/A",
-                        style: GoogleFonts.roboto(
-                          textStyle: TextStyle(color: Colors.white70),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              // => SERIOUS
-              Positioned(
-                top: 347,
-                left: 240,
-                child: Container(
-                  height: 85,
-                  width: 97.5,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.purple[400],
-                  ),
-                  child: Column(
-                    children: <Widget>[
-                      Text(
-                        "Serious",
-                        style: GoogleFonts.roboto(
-                          textStyle: TextStyle(color: Colors.white70),
-                        ),
-                      ),
-                      Text(
-                        "N/A",
-                        style: GoogleFonts.roboto(
-                          textStyle: TextStyle(color: Colors.white70),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),*/
             // Added white container with rounded corners
             Container(
               margin: EdgeInsets.only(top: 470),
@@ -238,9 +191,9 @@ class _HomescreenState extends State<Homescreen> {
                         icon: Icon(Icons.refresh),
                         onPressed: () {
                           _refreshAction();
-                          Utils.printDebug("PRESSED SEARCH BUTTON");
+                          Utils.printDebug("PRESSED REFRESH BUTTON");
                         },
-                        tooltip: "Presh to refresh",
+                        tooltip: "Press to refresh",
                         color: Colors.white,
                         highlightColor: Colors.white70,
                         iconSize: 35.0,
