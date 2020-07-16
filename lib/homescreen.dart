@@ -3,12 +3,29 @@ import 'utils.dart';
 import 'package:flutter/material.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
+enum ToggleSwitchStateCountry { global, mycountry }
+enum ToggleSwitchStateTimeSpan { total, today, yesterday }
+
 class Homescreen extends StatefulWidget {
   @override
   _HomescreenState createState() => _HomescreenState();
 }
 
+/* TODO (kai): 
+ * - active and serious widget thingy wegmachen
+ * - refreshen 
+ * - location permissions abfragen
+ * - graph
+ */
+
 class _HomescreenState extends State<Homescreen> {
+  // variables:
+  dynamic toggle_switch_state_country = ToggleSwitchStateCountry.mycountry;
+  dynamic toggle_switch_state_timespan = ToggleSwitchStateTimeSpan.total;
+  dynamic affected = "N/A";
+  dynamic deaths = "N/A";
+  dynamic recovered = "N/A";
+
   @override
   Widget build(BuildContext context) {
     // no need currently ==> var size = MediaQuery.of(context).size;
@@ -41,7 +58,7 @@ class _HomescreenState extends State<Homescreen> {
                       ),
                     ),
                     Text(
-                      "N/A",
+                      affected,
                       style: GoogleFonts.roboto(
                         textStyle: TextStyle(color: Colors.white70),
                       ),
@@ -50,7 +67,7 @@ class _HomescreenState extends State<Homescreen> {
                 ),
               ),
             ),
-            // => DEATH
+            // => DEATHS
             Positioned(
               left: 186,
               top: 250,
@@ -64,13 +81,13 @@ class _HomescreenState extends State<Homescreen> {
                 child: Column(
                   children: <Widget>[
                     Text(
-                      "Death",
+                      "Deaths",
                       style: GoogleFonts.roboto(
                         textStyle: TextStyle(color: Colors.white70),
                       ),
                     ),
                     Text(
-                      "N/A",
+                      deaths,
                       style: GoogleFonts.roboto(
                         textStyle: TextStyle(color: Colors.white70),
                       ),
@@ -99,7 +116,7 @@ class _HomescreenState extends State<Homescreen> {
                       ),
                     ),
                     Text(
-                      "N/A",
+                      recovered,
                       style: GoogleFonts.roboto(
                         textStyle: TextStyle(color: Colors.white70),
                       ),
@@ -108,7 +125,7 @@ class _HomescreenState extends State<Homescreen> {
                 ),
               ),
             ),
-            // => ACTIVE
+            /*=> ACTIVE
             Positioned(
               top: 347,
               child: Container(
@@ -164,7 +181,7 @@ class _HomescreenState extends State<Homescreen> {
                   ],
                 ),
               ),
-            ),
+            ),*/
             // Added white container with rounded corners
             Container(
               margin: EdgeInsets.only(top: 470),
@@ -239,7 +256,7 @@ class _HomescreenState extends State<Homescreen> {
                     ),
                   ),
                 ),
-                // Added ToggleButton MYCOUNTRY/GLOBAL
+                // Added ToggleSwitch MYCOUNTRY/GLOBAL
                 Container(
                   margin: EdgeInsets.only(top: 25),
                   child: ToggleSwitch(
@@ -251,10 +268,24 @@ class _HomescreenState extends State<Homescreen> {
                       inactiveTextColor: Colors.white70,
                       labels: ['My Country', 'Global'],
                       onToggle: (index) {
-                        print('switched to: $index');
+                        // assign value to variables on switch
+                        switch (index) {
+                          case 0:
+                            toggle_switch_state_country =
+                                ToggleSwitchStateCountry.mycountry;
+                            break;
+                          case 1:
+                            toggle_switch_state_country =
+                                ToggleSwitchStateCountry.global;
+                            break;
+                        }
+
+                        // TODO (charly): change variables for recovered, deaths ....
+
+                        Utils.printDebug('switched to: $index');
                       }),
                 ),
-                //Added ToggleButton TOTAL/TODAY/YESTERDAY
+                //Added ToggleSwitch TOTAL/TODAY/YESTERDAY
                 Container(
                   margin: EdgeInsets.only(top: 10),
                   child: ToggleSwitch(
@@ -265,7 +296,25 @@ class _HomescreenState extends State<Homescreen> {
                       inactiveTextColor: Colors.white70,
                       labels: ['Total', 'Today', 'Yesterday'],
                       onToggle: (index) {
-                        print('switched to: $index');
+                        // assign value to variables on switch
+                        switch (index) {
+                          case 0:
+                            toggle_switch_state_timespan =
+                                ToggleSwitchStateTimeSpan.total;
+                            break;
+                          case 1:
+                            toggle_switch_state_timespan =
+                                ToggleSwitchStateTimeSpan.today;
+                            break;
+                          case 2:
+                            toggle_switch_state_timespan =
+                                ToggleSwitchStateTimeSpan.yesterday;
+                            break;
+                        }
+
+                        // TODO (charly): change variables for recovered, deaths ....
+
+                        Utils.printDebug('switched to: $index');
                       }),
                 ),
               ],
