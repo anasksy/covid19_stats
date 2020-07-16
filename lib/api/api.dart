@@ -19,22 +19,25 @@ class API {
       Country>(); /* <country_name (for example: "Afghanistan"), country object> */
 
   /* run when the data needs to be loaded / refreshed */
-  static bool loadData() {
+  static Future<bool> loadData() async {
     json_string = JSONParser().fetchJSON();
     if (json_string == null) {
       /* fetching failed.. */
       return false;
     } else {
       /* fetching worked so return true */
-      initCountries(); /* initalize countries map */
+      if (await initCountries() == false)
+        return false; /* initalize countries map */
       return true;
     }
   }
 
   /* initalize country map */
-  static void initCountries() async {
+  static Future<bool> initCountries() async {
     String json = await json_string;
     countries = JSONParser.getCountriesfromJSON(json);
+    if (countries != null) return true;
+    return false;
   }
 
   /* returns country object by the country name (for example: "Afghanistan") */
@@ -55,58 +58,85 @@ class API {
     return null; /* no date count was found */
   }
 
-  /* returns confirmed cases by date object */
-  static int getConfirmedCasesByDate(Date date) {
-    return date.confirmed;
-  }
-
-  /* returns deaths by date object */
-  static int getDeathsByDate(Date date) {
-    return date.deaths;
-  }
-
-  /* returns recovered patients by date object */
-  static int getRecoveredByDate(Date date) {
-    return date.recovered;
-  }
-
-  /* returns total confirmed cases by country name */
-  static int getConfirmedCasesByDateTotal(String country_name) {
+  /* returns confirmed cases by country_name and date_string */
+  static int getConfirmedCasesByDate(String country_name, String date_string) {
     int confirmed = 0;
     countries.forEach((_country_name, country_object) {
       if (_country_name == country_name) {
         Map<int, Date> dates = country_object.dates;
         dates.forEach((date_index, date_object) {
-          confirmed = confirmed + date_object.confirmed;
+          if (date_object.date_string == date_string) {
+            confirmed = date_object.confirmed;
+          }
         });
       }
     });
     return confirmed;
   }
 
-  /* returns total deaths by country name */
-  static int getDeathsByDateTotal(String country_name) {
+  /* returns deaths by country_name and date_string */
+  static int getDeathsByDate(String country_name, String date_string) {
     int deaths = 0;
     countries.forEach((_country_name, country_object) {
       if (_country_name == country_name) {
         Map<int, Date> dates = country_object.dates;
         dates.forEach((date_index, date_object) {
-          deaths = deaths + date_object.deaths;
+          if (date_object.date_string == date_string) {
+            deaths = date_object.deaths;
+          }
         });
       }
     });
     return deaths;
   }
 
-  /* returns total ecovered patients by country name */
-  static int getRecoveredByDateTotal(String country_name) {
+  /* returns recovered patients by country_name and date_string */
+  static int getRecoveredByDate(String country_name, String date_string) {
     int recovered = 0;
     countries.forEach((_country_name, country_object) {
       if (_country_name == country_name) {
         Map<int, Date> dates = country_object.dates;
         dates.forEach((date_index, date_object) {
-          recovered = recovered + date_object.recovered;
+          if (date_object.date_string == date_string) {
+            recovered = date_object.recovered;
+          }
         });
+      }
+    });
+    return recovered;
+  }
+
+  /* returns total confirmed cases by country name */
+  static int getConfirmedCasesTotal(String country_name) {
+    int confirmed = 0;
+    countries.forEach((_country_name, country_object) {
+      if (_country_name == country_name) {
+        Map<int, Date> dates = country_object.dates;
+        confirmed = confirmed + dates[dates.length - 1].confirmed;
+      }
+    });
+    return confirmed;
+  }
+
+  /* returns total deaths by country name */
+  static int getDeathsTotal(String country_name) {
+    int deaths = 0;
+    countries.forEach((_country_name, country_object) {
+      if (_country_name == country_name) {
+        Map<int, Date> dates = country_object.dates;
+        deaths = deaths + dates[dates.length - 1].deaths;
+      }
+    });
+    return deaths;
+  }
+
+  /* returns total recovered patients by country name */
+  static int getRecoveredTotal(String country_name) {
+    int recovered = 0;
+    countries.forEach((_country_name, country_object) {
+      if (_country_name == country_name) {
+        Map<int, Date> dates = country_object.dates;
+        recovered = recovered + dates[dates.length - 1].recovered;
       }
     });
     return recovered;
@@ -114,75 +144,72 @@ class API {
 
   /* return global confirmed cases by date_string (yyyy-mm-dd) */
   static int getConfirmedCasesGlobalByDate(String date_string) {
-    countries.forEach((country_name, country_object) {
-      Map<int, Date> dates = country_object.dates;
-      dates.forEach((date_index, date_object) {
-        if (date_object.date_string == date_string) {
-          return date_object.confirmed;
-        }
-      });
-    });
-    return 0;
-  }
-
-  /* return global deaths by date_string (yyyy-mm-dd) */
-  static int getDeathsGlobalByDate(String date_string) {
-    countries.forEach((country_name, country_object) {
-      Map<int, Date> dates = country_object.dates;
-      dates.forEach((date_index, date_object) {
-        if (date_object.date_string == date_string) {
-          return date_object.deaths;
-        }
-      });
-    });
-    return 0;
-  }
-
-  /* return global recovered patients by date_string (yyyy-mm-dd) */
-  static int getRecoveredGlobalByDate(String date_string) {
-    countries.forEach((country_name, country_object) {
-      Map<int, Date> dates = country_object.dates;
-      dates.forEach((date_index, date_object) {
-        if (date_object.date_string == date_string) {
-          return date_object.recovered;
-        }
-      });
-    });
-    return 0;
-  }
-
-  /* return total global confirmed cases by date_string (yyyy-mm-dd) */
-  static int getConfirmedCasesGlobalByDateTotal() {
     int confirmed = 0;
     countries.forEach((country_name, country_object) {
       Map<int, Date> dates = country_object.dates;
       dates.forEach((date_index, date_object) {
-        confirmed = confirmed + date_object.confirmed;
+        if (date_object.date_string == date_string) {
+          confirmed = confirmed + date_object.confirmed;
+        }
       });
     });
     return confirmed;
   }
 
-  /* return total global deaths by date_string (yyyy-mm-dd) */
-  static int getDeathsGlobalByDateTotal() {
+  /* return global deaths by date_string (yyyy-mm-dd) */
+  static int getDeathsGlobalByDate(String date_string) {
     int deaths = 0;
     countries.forEach((country_name, country_object) {
       Map<int, Date> dates = country_object.dates;
       dates.forEach((date_index, date_object) {
-        deaths = deaths + date_object.deaths;
+        if (date_object.date_string == date_string) {
+          deaths = deaths + date_object.deaths;
+        }
       });
     });
     return deaths;
   }
 
-  /* return total global recovered patients by date_string (yyyy-mm-dd) */
-  static int getRecoveredGlobalByDateTotal() {
+  /* return global recovered patients by date_string (yyyy-mm-dd) */
+  static int getRecoveredGlobalByDate(String date_string) {
     int recovered = 0;
     countries.forEach((country_name, country_object) {
       Map<int, Date> dates = country_object.dates;
       dates.forEach((date_index, date_object) {
-        recovered = recovered + date_object.recovered;
+        if (date_object.date_string == date_string) {
+          recovered = recovered + date_object.recovered;
+        }
       });
+    });
+    return recovered;
+  }
+
+  /* return total global confirmed cases */
+  static int getConfirmedCasesGlobalTotal() {
+    int confirmed = 0;
+    countries.forEach((country_name, country_object) {
+      Map<int, Date> dates = country_object.dates;
+      confirmed = confirmed + dates[dates.length - 1].confirmed;
+    });
+    return confirmed;
+  }
+
+  /* return total global deaths*/
+  static int getDeathsGlobalTotal() {
+    int deaths = 0;
+    countries.forEach((country_name, country_object) {
+      Map<int, Date> dates = country_object.dates;
+      deaths = deaths + dates[dates.length - 1].deaths;
+    });
+    return deaths;
+  }
+
+  /* return total global recovered patients) */
+  static int getRecoveredGlobalTotal() {
+    int recovered = 0;
+    countries.forEach((country_name, country_object) {
+      Map<int, Date> dates = country_object.dates;
+      recovered = recovered + dates[dates.length - 1].recovered;
     });
     return recovered;
   }
