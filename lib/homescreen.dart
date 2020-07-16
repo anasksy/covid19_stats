@@ -16,36 +16,182 @@ class _HomescreenState extends State<Homescreen> {
     // old code 2 ==> List<bool> _selections2 = List.generate(3, (_) => false);
     return Scaffold(
       backgroundColor: Colors.purple[800],
-      body: Stack(
-        children: <Widget>[
-          // Added white container with rounded corners
-          Container(
-            margin: EdgeInsets.only(top: 475),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(40),
-                topRight: Radius.circular(40),
+      body: SafeArea(
+        child: Stack(
+          alignment: Alignment.center,
+          children: <Widget>[
+            //Added 2 Containers
+            // => AFFECTED
+            Positioned(
+              right: 186,
+              top: 250,
+              child: Container(
+                height: 85,
+                width: 153.75,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.orange[400],
+                ),
+                child: Column(
+                  children: <Widget>[
+                    Text(
+                      "Affected",
+                      style: GoogleFonts.roboto(
+                        textStyle: TextStyle(color: Colors.white70),
+                      ),
+                    ),
+                    Text(
+                      "N/A",
+                      style: GoogleFonts.roboto(
+                        textStyle: TextStyle(color: Colors.white70),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              color: Colors.white,
             ),
-          ),
+            // => DEATH
+            Positioned(
+              left: 186,
+              top: 250,
+              child: Container(
+                height: 85,
+                width: 153.75,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.red[400],
+                ),
+                child: Column(
+                  children: <Widget>[
+                    Text(
+                      "Death",
+                      style: GoogleFonts.roboto(
+                        textStyle: TextStyle(color: Colors.white70),
+                      ),
+                    ),
+                    Text(
+                      "N/A",
+                      style: GoogleFonts.roboto(
+                        textStyle: TextStyle(color: Colors.white70),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            // => RECOVERED
+            Positioned(
+              top: 347,
+              right: 240,
+              child: Container(
+                height: 85,
+                width: 97.5,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.green[400],
+                ),
+                child: Column(
+                  children: <Widget>[
+                    Text(
+                      "Recovered",
+                      style: GoogleFonts.roboto(
+                        textStyle: TextStyle(color: Colors.white70),
+                      ),
+                    ),
+                    Text(
+                      "N/A",
+                      style: GoogleFonts.roboto(
+                        textStyle: TextStyle(color: Colors.white70),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            // => ACTIVE
+            Positioned(
+              top: 347,
+              child: Container(
+                height: 85,
+                width: 97.5,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.blue[400],
+                ),
+                child: Column(
+                  children: <Widget>[
+                    Text(
+                      "Active",
+                      style: GoogleFonts.roboto(
+                        textStyle: TextStyle(color: Colors.white70),
+                      ),
+                    ),
+                    Text(
+                      "N/A",
+                      style: GoogleFonts.roboto(
+                        textStyle: TextStyle(color: Colors.white70),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            // => SERIOUS
+            Positioned(
+              top: 347,
+              left: 240,
+              child: Container(
+                height: 85,
+                width: 97.5,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.purple[400],
+                ),
+                child: Column(
+                  children: <Widget>[
+                    Text(
+                      "Serious",
+                      style: GoogleFonts.roboto(
+                        textStyle: TextStyle(color: Colors.white70),
+                      ),
+                    ),
+                    Text(
+                      "N/A",
+                      style: GoogleFonts.roboto(
+                        textStyle: TextStyle(color: Colors.white70),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            // Added white container with rounded corners
+            Container(
+              margin: EdgeInsets.only(top: 470),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(40),
+                  topRight: Radius.circular(40),
+                ),
+                color: Colors.white,
+              ),
+            ),
 
-          // Added "Daily New Cases" Text
-          // ==> it's in the white container at the bottom
-          Container(
-            child: Text(
-              "Daily New Cases",
-              style: GoogleFonts.roboto(
-                textStyle: TextStyle(
-                    color: Colors.black,
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold),
+            // Added "Daily New Cases" Text
+            // ==> it's in the white container at the bottom
+            Container(
+              child: Text(
+                "Daily New Cases",
+                style: GoogleFonts.roboto(
+                  textStyle: TextStyle(
+                      color: Colors.black,
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold),
+                ),
               ),
+              margin: EdgeInsets.only(top: 510, left: 24),
             ),
-            margin: EdgeInsets.only(top: 510, left: 24),
-          ),
-          SafeArea(
-            child: Column(
+            Column(
               children: <Widget>[
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -82,7 +228,7 @@ class _HomescreenState extends State<Homescreen> {
                 // ==> it's under the Menu-IconButton at the top left corner
                 Container(
                   alignment: Alignment.topLeft,
-                  margin: EdgeInsets.only(left: 24, top: 33),
+                  margin: EdgeInsets.only(left: 24, top: 30),
                   child: Text(
                     "Statistics",
                     style: GoogleFonts.roboto(
@@ -124,8 +270,8 @@ class _HomescreenState extends State<Homescreen> {
                 ),
               ],
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
