@@ -1,8 +1,9 @@
 import 'package:google_fonts/google_fonts.dart';
-import 'utils.dart';
 import 'package:flutter/material.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'api/api.dart';
+import 'noconnection.dart';
+import 'utils.dart';
 
 enum ToggleSwitchStateCountry { global, mycountry }
 enum ToggleSwitchStateTimeSpan { total, today, yesterday }
@@ -28,16 +29,24 @@ class _HomescreenState extends State<Homescreen> {
   dynamic deaths = "N/A";
   dynamic recovered = "N/A";
 
+  _refreshAPI() async {
+    if (await API.loadData() == false) {
+      // no internet or api couldnt get initialized
+      Utils.printDebug("API INIT ERROR");
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => noConnection()),
+      );
+    } else {
+      Utils.printDebug("API INIT SUCCESSFUL");
+      // refresh was successful
+      // show on screen that succesful
+    }
+  }
+
   _refreshAction() {
     setState(() {
-      if (API.loadData() == false) {
-        // no internet or api couldnt get initialized
-        Utils.printDebug("API INIT ERROR");
-        // no internet screen
-      } else {
-        Utils.printDebug("API INIT SUCCESSFUL");
-        // refresh was successful
-      }
+      _refreshAPI();
     });
   }
 
@@ -53,7 +62,6 @@ class _HomescreenState extends State<Homescreen> {
           alignment: Alignment.center,
           children: <Widget>[
             //Added 2 Containers
-            // => AFFECTED
             Positioned(
               right: 186,
               top: 250,
