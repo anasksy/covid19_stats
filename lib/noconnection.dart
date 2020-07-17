@@ -1,3 +1,4 @@
+import 'package:covid19_mobileapp/homescreen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'api/api.dart';
@@ -9,7 +10,7 @@ class noConnection extends StatefulWidget {
 }
 
 class _noConnectionState extends State<noConnection> {
-  _refreshAPI() async {
+  _refreshAPI(context) async {
     if (await API.loadData() == false) {
       // no internet or api couldnt get initialized
       Utils.printDebug("API INIT ERROR");
@@ -20,9 +21,9 @@ class _noConnectionState extends State<noConnection> {
     }
   }
 
-  _refreshAction() {
+  _refreshAction(context) {
     setState(() {
-      _refreshAPI();
+      _refreshAPI(context);
     });
   }
 
@@ -45,7 +46,7 @@ class _noConnectionState extends State<noConnection> {
               child: IconButton(
                 icon: Icon(Icons.refresh),
                 onPressed: () {
-                  _refreshAction();
+                  _refreshAction(context);
                   Utils.printDebug("PRESSED REFRESH BUTTON");
                 },
                 tooltip: "Press to refresh",

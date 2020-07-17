@@ -29,7 +29,7 @@ class _HomescreenState extends State<Homescreen> {
   dynamic deaths = "N/A";
   dynamic recovered = "N/A";
 
-  _refreshAPI() async {
+  _refreshAPI(context) async {
     if (await API.loadData() == false) {
       // no internet or api couldnt get initialized
       Utils.printDebug("API INIT ERROR");
@@ -44,9 +44,9 @@ class _HomescreenState extends State<Homescreen> {
     }
   }
 
-  _refreshAction() {
+  _refreshAction(context) {
     setState(() {
-      _refreshAPI();
+      _refreshAPI(context);
     });
   }
 
@@ -198,7 +198,7 @@ class _HomescreenState extends State<Homescreen> {
                       child: IconButton(
                         icon: Icon(Icons.refresh),
                         onPressed: () {
-                          _refreshAction();
+                          _refreshAction(context);
                           Utils.printDebug("PRESSED REFRESH BUTTON");
                         },
                         tooltip: "Press to refresh",

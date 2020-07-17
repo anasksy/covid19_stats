@@ -1,4 +1,5 @@
 import 'dart:collection';
+import 'dart:io';
 
 import 'package:http/http.dart' as http;
 import 'package:covid19_mobileapp/utils.dart';
@@ -10,14 +11,20 @@ class JSONParser {
   /* fetch the json from the web */
   Future<String> fetchJSON() async {
     const url = "https://pomber.github.io/covid19/timeseries.json";
-    var response = await http.get(url);
-    if (response.statusCode == 200) {
-      /* fetching was a success so return the JSON as a string */
-      return response.body.toString();
-    } else {
-      /* fetching failed => return null */
-      Utils.printDebug(
-          'JSON PARSER REQUEST FAILED WITH CODE: ${response.statusCode}.');
+    try {
+      var response = await http.get(url);
+      if (response.statusCode == 200) {
+        /* fetching was a success so return the JSON as a string */
+        return response.body.toString();
+      } else {
+        /* fetching failed => return null */
+        Utils.printDebug(
+            'JSON PARSER REQUEST FAILED WITH CODE: ${response.statusCode}.');
+        return null;
+      }
+    } on SocketException {
+      /* error */
+      Utils.printDebug('JSON PARSER REQUEST FAILED');
       return null;
     }
   }

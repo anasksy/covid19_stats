@@ -5,6 +5,10 @@ import 'homescreen.dart';
 import 'noconnection.dart';
 import 'utils.dart';
 
+/* current bug:
+the navigator (routing) between noconnection and homescreen isnt and main and noconnection isnt workiinnggg not at fucking all
+it throws an navigation error
+
 /* global variables */
 bool debug_mode = true;
 

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'parser.dart';
 import 'country.dart';
 import 'date.dart';
@@ -21,7 +23,8 @@ class API {
   /* run when the data needs to be loaded / refreshed */
   static Future<bool> loadData() async {
     json_string = JSONParser().fetchJSON();
-    if (json_string == null) {
+    String json = await json_string;
+    if (json == null) {
       /* fetching failed.. */
       return false;
     } else {
