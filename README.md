@@ -26,4 +26,4 @@ Uses JSON API from [pomber/covid19](https://github.com/pomber/covid19) and Data 
 
 This repository is under AGPL-3.0 License.  
 Uses [pomber/covid19](https://github.com/pomber/covid19) JSON API that is under MIT License.  
-The data is under [CSSEGISandData/COVID-19](https://github.com/CSSEGISandData/COVID-19/) terms of use.
+The data is under [CSSEGISandData/COVID-19](https://github.com/CSSEGISandData/COVID-19/) (COVID-19 Data Repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University) terms of use.
