@@ -1,4 +1,5 @@
 import 'package:google_fonts/google_fonts.dart';
+import 'package:number_display/number_display.dart';
 import 'package:flutter/material.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'api/api.dart';
@@ -7,6 +8,11 @@ import 'utils.dart';
 
 enum ToggleSwitchStateCountry { global, mycountry }
 enum ToggleSwitchStateTimeSpan { total, today, yesterday }
+
+final display = createDisplay(
+  length: 5,
+  decimal: 0,
+);
 
 class Homescreen extends StatefulWidget {
   @override
@@ -25,11 +31,98 @@ class _HomescreenState extends State<Homescreen> {
 
   dynamic toggle_switch_state_country = ToggleSwitchStateCountry.mycountry;
   dynamic toggle_switch_state_timespan = ToggleSwitchStateTimeSpan.total;
-  dynamic affected = "N/A";
-  dynamic deaths = "N/A";
-  dynamic recovered = "N/A";
+  String confirmed = "N/A";
+  String deaths = "N/A";
+  String recovered = "N/A";
 
-  _refreshAPI(context) async {
+  void refreshData() {
+    switch (toggle_switch_state_timespan) {
+      case ToggleSwitchStateTimeSpan.total:
+        switch (toggle_switch_state_country) {
+          case ToggleSwitchStateCountry.global:
+            setState(
+                () => confirmed = display(API.getConfirmedCasesGlobalTotal()));
+            setState(() => deaths = display(API.getDeathsGlobalTotal()));
+            setState(() => recovered = display(API.getRecoveredGlobalTotal()));
+            break;
+          case ToggleSwitchStateCountry.mycountry:
+            // TODO: check for country and get country specific data
+            setState(() => confirmed = "N/A");
+            setState(() => deaths = "N/A");
+            setState(() => recovered = "N/A");
+            break;
+        }
+        break;
+      case ToggleSwitchStateTimeSpan.today:
+        switch (toggle_switch_state_country) {
+          case ToggleSwitchStateCountry.global:
+            /* TODO
+             *
+             *  FIX THIS SHIT IT DISPLAYS 0 WDNIAWJDWAIJDWI
+             * 
+             * 
+             * 
+             */
+
+            DateTime date = DateTime.now();
+            // ik its bit confusing but i use the real yesterday as today because the api only has data for past days..
+            DateTime today = new DateTime(date.year, date.month, date.day - 1);
+            DateTime yesterday =
+                new DateTime(date.year, date.month, date.day - 2);
+
+            int confirmedtoday =
+                API.getConfirmedCasesGlobalByDate(API.formatDateTime(today));
+            int confirmedyesterday = API
+                .getConfirmedCasesGlobalByDate(API.formatDateTime(yesterday));
+            int deathstoday =
+                API.getDeathsGlobalByDate(API.formatDateTime(today));
+            int deathsyesterday =
+                API.getDeathsGlobalByDate(API.formatDateTime(yesterday));
+            int recoveredtoday =
+                API.getRecoveredGlobalByDate(API.formatDateTime(today));
+            int recoveredyesterday =
+                API.getRecoveredGlobalByDate(API.formatDateTime(yesterday));
+
+            setState(
+                () => confirmed = display(confirmedtoday - confirmedyesterday));
+            setState(() => deaths = display(deathstoday - deathsyesterday));
+            setState(
+                () => recovered = display(recoveredtoday - recoveredyesterday));
+            break;
+          case ToggleSwitchStateCountry.mycountry:
+            // TODO: check for country and get country specific data
+            setState(() => confirmed = "N/A");
+            setState(() => deaths = "N/A");
+            setState(() => recovered = "N/A");
+            break;
+        }
+        break;
+      case ToggleSwitchStateTimeSpan.yesterday:
+        switch (toggle_switch_state_country) {
+          case ToggleSwitchStateCountry.global:
+            /* TODO
+             *
+             * 
+             * 
+             * 
+             * 
+             */
+            break;
+          case ToggleSwitchStateCountry.mycountry:
+            // TODO: check for country and get country specific data
+            setState(() => confirmed = "N/A");
+            setState(() => deaths = "N/A");
+            setState(() => recovered = "N/A");
+            break;
+        }
+        break;
+    }
+    Utils.printDebug("Confimred = " + confirmed);
+    Utils.printDebug("Deaths = " + deaths);
+    Utils.printDebug("Recovered = " + recovered);
+  }
+
+  void _refreshAPI(context) async {
     if (await API.loadData() == false) {
       // no internet or api couldnt get initialized
       Utils.printDebug("API INIT ERROR");
@@ -39,6 +132,7 @@ class _HomescreenState extends State<Homescreen> {
       );
     } else {
       Utils.printDebug("API INIT SUCCESSFUL");
+      refreshData();
       // refresh was successful
       // show on screen that succesful
     }
@@ -75,13 +169,13 @@ class _HomescreenState extends State<Homescreen> {
                 child: Column(
                   children: <Widget>[
                     Text(
-                      "Affected",
+                      "Confirmed Cases",
                       style: GoogleFonts.roboto(
                         textStyle: TextStyle(color: Colors.white70),
                       ),
                     ),
                     Text(
-                      affected,
+                      confirmed,
                       style: GoogleFonts.roboto(
                         textStyle: TextStyle(color: Colors.white70),
                       ),
@@ -248,9 +342,10 @@ class _HomescreenState extends State<Homescreen> {
                             break;
                         }
 
-                        // TODO (charly): change variables for recovered, deaths ....
+                        refreshData();
 
-                        Utils.printDebug('switched to: $index');
+                        Utils.printDebug(
+                            'COUNTRY TOGGLESWITCH = switched to: $toggle_switch_state_country');
                       }),
                 ),
                 //Added ToggleSwitch TOTAL/TODAY/YESTERDAY
@@ -280,9 +375,10 @@ class _HomescreenState extends State<Homescreen> {
                             break;
                         }
 
-                        // TODO (charly): change variables for recovered, deaths ....
+                        refreshData();
 
-                        Utils.printDebug('switched to: $index');
+                        Utils.printDebug(
+                            'TIMESPAN TOGGLESWITCH = switched to: $toggle_switch_state_timespan');
                       }),
                 ),
               ],

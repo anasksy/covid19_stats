@@ -21,6 +21,7 @@ Uses JSON API from [pomber/covid19](https://github.com/pomber/covid19) and Data 
 - [http](https://pub.dev/packages/http)
 - [toggle_switch](https://pub.dev/packages/toggle_switch)
 - [google_fonts](https://pub.dev/packages/google_fonts)
+- [number_display](https://pub.dev/packages/number_display)
 
 ### License
 

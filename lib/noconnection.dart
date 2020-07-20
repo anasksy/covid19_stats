@@ -10,7 +10,7 @@ class noConnection extends StatefulWidget {
 }
 
 class _noConnectionState extends State<noConnection> {
-  _refreshAPI(context) async {
+  void _refreshAPI(context) async {
     if (await API.loadData() == false) {
       // no internet or api couldnt get initialized
       Utils.printDebug("API INIT ERROR");
@@ -21,7 +21,7 @@ class _noConnectionState extends State<noConnection> {
     }
   }
 
-  _refreshAction(context) {
+  void _refreshAction(context) {
     setState(() {
       _refreshAPI(context);
     });

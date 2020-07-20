@@ -7,7 +7,7 @@ import 'utils.dart';
 
 /* current bug:
 the navigator (routing) between noconnection and homescreen isnt and main and noconnection isnt workiinnggg not at fucking all
-it throws an navigation error
+it throws an navigation error */
 
 /* global variables */
 bool debug_mode = true;
@@ -17,7 +17,7 @@ void main() {
 }
 
 class CovidApp extends StatelessWidget {
-  loadAPI(context) async {
+  void loadAPI(context) async {
     if (await API.loadData() == false) {
       // no internet or api couldnt get initialized
       Utils.printDebug("API INIT ERROR");

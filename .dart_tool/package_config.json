@@ -116,6 +116,12 @@
       "languageVersion": "1.12"
     },
     {
+      "name": "number_display",
+      "rootUri": "file:///home/charly/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/number_display-2.3.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.1"
+    },
+    {
       "name": "path",
       "rootUri": "file:///home/charly/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/path-1.6.4",
       "packageUri": "lib/",
@@ -260,7 +266,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2020-07-16T19:02:31.443668Z",
+  "generated": "2020-07-20T18:01:50.741664Z",
   "generator": "pub",
   "generatorVersion": "2.8.4"
 }
