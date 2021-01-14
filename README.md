@@ -1,4 +1,4 @@
-# COVID-19 Statistics Flutter Visualization App (PROJECT PAUSED)
+# COVID-19 Statistics Flutter Visualization App (paused)
 
 ## About
 
